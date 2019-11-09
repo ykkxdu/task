@@ -1,6 +1,5 @@
 package com.xihang.work.entity.projection;
 
-import com.xihang.work.entity.BlueLabel;
 import com.xihang.work.entity.InspectionTask;
 import com.xihang.work.entity.User;
 import org.springframework.data.rest.core.config.Projection;
@@ -18,6 +17,5 @@ public interface InspectionTaskAll {
     String getFinishTime();
     String getTaskStatus();
     String getTaskPerson();
-    BlueLabel getBlueLabel();
     User getUser();
 }

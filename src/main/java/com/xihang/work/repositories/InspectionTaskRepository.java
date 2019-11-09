@@ -12,5 +12,4 @@ import java.util.List;
  * @Date:Created in 2019/1/4
  */
 public interface InspectionTaskRepository extends JpaRepository<InspectionTask,Long> {
-    List<InspectionTask> findByBlueLabelId(@Param("blueLabelId") Long blueLabelId);
 }

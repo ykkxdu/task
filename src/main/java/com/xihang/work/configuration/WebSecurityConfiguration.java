@@ -1,5 +1,4 @@
 package com.xihang.work.configuration;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xihang.work.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 /**
  * @Author:Yankaikai
  * @Description:web安全登录控制端
@@ -56,7 +54,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // /api 下的接口都要登录权限
-                .mvcMatchers("/api/**").authenticated()
+               // .mvcMatchers("/api/**").authenticated()
+                .mvcMatchers(HttpMethod.POST,"/api/users/registry").permitAll()
                 // 判断是否登录的接口不用认证
                 .mvcMatchers(HttpMethod.GET, "/api/self").permitAll()
                 .anyRequest().permitAll().and()

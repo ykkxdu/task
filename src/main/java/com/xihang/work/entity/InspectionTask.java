@@ -28,9 +28,6 @@ public class InspectionTask {
     private String taskStatus;
     // 检查人
     private String taskPerson;
-    // 关联蓝牙ID
-    @ManyToOne(cascade = CascadeType.ALL)
-    private BlueLabel blueLabel;
     // 关联的用户Id
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
