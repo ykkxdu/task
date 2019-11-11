@@ -6,7 +6,6 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * @Author:ZhaoChao
  * @Description:检查任务实体
  * @Date:Created in 2019/1/4
  */
@@ -31,6 +30,8 @@ public class InspectionTask {
     // 关联的用户Id
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Army army;
 
     public InspectionTask() {
     }

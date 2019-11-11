@@ -1,5 +1,6 @@
 package com.xihang.work.entity.projection;
 
+import com.xihang.work.entity.Army;
 import com.xihang.work.entity.InspectionTask;
 import com.xihang.work.entity.User;
 import org.springframework.data.rest.core.config.Projection;
@@ -18,4 +19,5 @@ public interface InspectionTaskAll {
     String getTaskStatus();
     String getTaskPerson();
     User getUser();
+    Army getArmy();
 }
