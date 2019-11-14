@@ -1,5 +1,4 @@
 package com.xihang.work.controller;
-
 import com.xihang.work.entity.InspectionTask;
 import com.xihang.work.entity.projection.InspectionTaskAll;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.hateoas.PagedResources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @Author:ZhangChao
@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Date:Created in 2019/1/15
  */
 @RepositoryRestController
-@RequestMapping("/api/inspectionTasks")
+@RequestMapping("/inspectionTasks")
 public class InspectionTaskController extends FuzzySearchController<InspectionTask> {
+
     @Autowired
     private ProjectionFactory projectionFactory;
     @GetMapping("/fuzzy-all")
@@ -34,6 +35,17 @@ public class InspectionTaskController extends FuzzySearchController<InspectionTa
                 data.getTotalElements(),
                 data.getTotalPages());
         return ResponseEntity.ok(PagedResources.wrap(projectInlineData,pageMetadata));
+    }
+    @GetMapping("/getEquip")
+    public ResponseEntity getEquip(){
+        RestTemplate restTemplate=new RestTemplate();
+        ResponseEntity result=restTemplate.getForEntity("http://localhost:31380/api/equips",String.class,String.class);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/getVersion")
+    public ResponseEntity getVersion(){
+        return ResponseEntity.ok("v1");
     }
 
 }
