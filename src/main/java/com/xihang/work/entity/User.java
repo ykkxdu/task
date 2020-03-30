@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Data
-@AllArgsConstructor
+@AllArgsConstructor()
 public class User {
     // 用户Id
     @Id
