@@ -1,6 +1,8 @@
 package com.xihang.work.controller;
 import com.xihang.work.entity.InspectionTask;
 import com.xihang.work.entity.projection.InspectionTaskAll;
+import com.xihang.work.repositories.ArmyRepository;
+import com.xihang.work.repositories.InspectionTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -21,31 +23,5 @@ import org.springframework.web.client.RestTemplate;
 @RepositoryRestController
 @RequestMapping("/inspectionTasks")
 public class InspectionTaskController extends FuzzySearchController<InspectionTask> {
-
-    @Autowired
-    private ProjectionFactory projectionFactory;
-    @GetMapping("/fuzzy-all")
-    public ResponseEntity<PagedResources> fuzzySearchWithProject(InspectionTask task, Pageable pageable){
-        Page<InspectionTask> data=repository.findAll(Example.of(task,defaultExampleMatcher),pageable);
-        Page<InspectionTaskAll> projectInlineData=data.map(
-                inspectionTask -> projectionFactory.createProjection(InspectionTaskAll.class,inspectionTask));
-        PagedResources.PageMetadata pageMetadata=new PagedResources.PageMetadata(
-                data.getSize(),
-                data.getNumber(),
-                data.getTotalElements(),
-                data.getTotalPages());
-        return ResponseEntity.ok(PagedResources.wrap(projectInlineData,pageMetadata));
-    }
-    @GetMapping("/getEquip")
-    public ResponseEntity getEquip(){
-        RestTemplate restTemplate=new RestTemplate();
-        ResponseEntity result=restTemplate.getForEntity("http://localhost:31380/api/equips",String.class,String.class);
-        return ResponseEntity.ok(result);
-    }
-
-    @GetMapping("/getVersion")
-    public ResponseEntity getVersion(){
-        return ResponseEntity.ok("v1");
-    }
 
 }
