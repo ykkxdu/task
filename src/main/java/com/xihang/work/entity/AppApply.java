@@ -23,7 +23,7 @@ public class AppApply {
     // 应用名称
     private String appname;
     // 创建用户
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     // 应用申请时间
     private LocalDateTime applyTime;

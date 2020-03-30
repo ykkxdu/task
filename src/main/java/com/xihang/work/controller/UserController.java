@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.apache.commons.lang.StringUtils;
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -33,6 +35,7 @@ public class UserController {
     @PostMapping("/registry")
     public ResponseEntity save(@RequestBody User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setUserRegistered(LocalDateTime.now());
         return ResponseEntity.ok(repository.save(user));
     }
     /**

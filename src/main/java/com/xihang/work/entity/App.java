@@ -28,7 +28,7 @@ public class App {
     // 应用秘钥APPKEY
     private String appkey;
     // 创建用户Id
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     // 应用图标地址
     private String imgUrl;
