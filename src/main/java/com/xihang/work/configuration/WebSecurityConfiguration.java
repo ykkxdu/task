@@ -31,7 +31,6 @@ import java.io.IOException;
 /**
  * @Author:Yankaikai
  * @Description:web安全登录控制端
- * @Date:Created in 2018/11/8
  */
 @Configuration
 @EnableWebSecurity

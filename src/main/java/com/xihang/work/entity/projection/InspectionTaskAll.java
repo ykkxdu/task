@@ -1,7 +1,7 @@
 package com.xihang.work.entity.projection;
 
-import com.xihang.work.entity.Army;
-import com.xihang.work.entity.InspectionTask;
+import com.xihang.work.entity.AppApply;
+import com.xihang.work.entity.App;
 import com.xihang.work.entity.User;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.config.Projection;
  * @Description:为Web查询提供投影接口
  * @Date:Created in 2019/1/11
  */
-@Projection(name = "all",types = InspectionTask.class)
+@Projection(name = "all",types = App.class)
 public interface InspectionTaskAll {
     Long getId();
     String getTaskName();
@@ -19,5 +19,5 @@ public interface InspectionTaskAll {
     String getTaskStatus();
     String getTaskPerson();
     User getUser();
-    Army getArmy();
+    AppApply getArmy();
 }

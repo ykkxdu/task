@@ -15,9 +15,7 @@ import java.security.Principal;
 import java.util.Objects;
 
 /**
- * @Author:ZhaoChao
  * @Description:用户接口
- * @Date:Created in 2019/1/8
  */
 @RepositoryRestController
 @RequestMapping("/api/users")

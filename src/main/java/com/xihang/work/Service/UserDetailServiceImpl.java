@@ -17,9 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @Author:ZhaoChao
  * @Description:权限认证
- * @Date:Created in 2019/1/4
  */
 @Service("userDetailsService")
 public class UserDetailServiceImpl implements UserDetailsService {
@@ -35,9 +33,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
         // 用户权限
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (String role : user.getRoles()) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(role));
-        }
+        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
         return new org.springframework.security.core.userdetails.User(
                 user.getUserName(), user.getPassword(), grantedAuthorities
         );

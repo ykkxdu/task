@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author:ZhaoChao
  * @Description:用户仓库初始化
- * @Date:Created in 2018/11/2
  */
 @Service
 public class RepositoriesInitializer {
@@ -48,8 +46,7 @@ public class RepositoriesInitializer {
         User user=new User();
         user.setUserName("admin");
         user.setPassword(bCryptPasswordEncoder.encode("pass"));
-        List<String> roles = new ArrayList<>();
-        roles.add("ADMIN");
+        user.setRole("ADMIN");
         userRepository.save(user);
     }
 }
