@@ -14,7 +14,7 @@ public interface AppApplyAll {
     String getAppname();
     User getUser();
     String getArmyIntroduct();
-    LocalDateTime getApplyTime();
+    String getApplyTime();
     String getIntroduction();
     Integer getIsRefused();
 }

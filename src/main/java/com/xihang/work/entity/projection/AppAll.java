@@ -17,5 +17,5 @@ public interface AppAll {
     String getIntroduction();
     User getUser();
 
-    LocalDateTime getcreateTime();
+    String getcreateTime();
 }

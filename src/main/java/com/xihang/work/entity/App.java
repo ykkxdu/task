@@ -22,7 +22,7 @@ public class App {
     // 应用名称
     private String appname;
     // 创建时间
-    private LocalDateTime createTime;
+    private String createTime;
     // 应用标识APPID
     private String appid;
     // 应用秘钥APPKEY

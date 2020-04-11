@@ -54,14 +54,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // /api 下的接口都要登录权限
                // .mvcMatchers("/api/**").authenticated()
+               // .mvcMatchers("/api/**").authenticated()
                 .mvcMatchers(HttpMethod.POST,"/api/users/registry").permitAll()
                 // 判断是否登录的接口不用认证
                 .mvcMatchers(HttpMethod.GET, "/api/self").permitAll()
-                .anyRequest().permitAll().and()
+                .mvcMatchers("/**").permitAll()
+                .anyRequest().authenticated().and()
                 .formLogin()
                 .failureHandler(new AjaxAuthenticationFailureHandler()) // 登录失败
                 .successHandler(new AjaxAuthenticationSuccessHandler()) // 登录成功
-                .permitAll().and()
+                .and()
                 .logout() // 退出登录
                 .logoutSuccessHandler(new AjaxLogoutSuccessHandler()) // 退出登录成功
                 .permitAll().and()

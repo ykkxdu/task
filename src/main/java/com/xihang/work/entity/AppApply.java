@@ -26,7 +26,7 @@ public class AppApply {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     // 应用申请时间
-    private LocalDateTime applyTime;
+    private String applyTime;
     // 应用图标地址
     private String imgUrl;
     @Column(columnDefinition ="TEXT")
