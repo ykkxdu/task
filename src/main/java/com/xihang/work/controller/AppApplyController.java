@@ -61,6 +61,7 @@ public class AppApplyController extends FuzzySearchController<App> {
             app.setIntroduction(appApply.getIntroduction());
             app.setAppkey(GenerCode.toSerialCode(id));
             app.setAppid("000000"+id);
+            app.setType(appApply.getType());
             app.setUser(appApply.getUser());
             appRepository.save(app);
             appApply.setUser(null);
