@@ -48,8 +48,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() // 禁用csrf，不太安全
                 .exceptionHandling()
+
                 // 自定义认证响应，失败返回401
                 .authenticationEntryPoint(new AjaxAuthenticationEntryPoint())
+                .and()
+                .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
                 // /api 下的接口都要登录权限

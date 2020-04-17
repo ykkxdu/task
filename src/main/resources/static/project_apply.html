@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://www.qkhtml.com/Case/kyptyh/4project_apply.html -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>应用申请</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+	<!--Top Start!-->
+	<div id="top">
+		<div class="topBar">
+			<div class="inner clearfix">
+				<h4>项目列表</h4>
+				<div class="userBar topItem">
+					<div class="portrait fl">
+						<img src="images/portrait.jpg">
+					</div>
+					<h3><a href="#">spakspace<i></i></a></h3>
+					<div class="dropdown">
+						<a onclick="logout()">退出</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Top End!-->
+
+	<!--Main Start!-->
+	<div id="main" style="height: 569px;">
+		<div class="content" tabindex="1" style="overflow: hidden; outline: none;">
+			<div class="contBox bgf9">
+				<div class="prolistHead clearfix">
+					<a class="prolist1" href="3project_list.html" target="_self">我的应用</a>
+					<a class="prolist2 active" href="4project_apply.html" target="_self">创建应用</a>
+				</div>
+
+				<div class="prolistApplyW">
+					<div class="prolistApplyInner clearfix">
+						<h2>应用名称</h2>
+						<div class="prolistApplyCont">
+							<input type="text" name="" id="appname" value="" placeholder="网址/APP名/微信公众号">
+						</div>
+					</div>
+					<div class="prolistApplyInner clearfix">
+						<h2>应用类型</h2>
+						<div style="float: left;margin-left: 18px;" id='apptype'>
+							<input type="radio" name="type" value="0">移动APP
+							<input type="radio" name="type" value="1">小程序
+							<input type="radio" name="type" value="2">Web应用
+							<input type="radio" name="type" value="3">研究报告
+							<input type="radio" name="type" value="4">PC软件
+						</div>
+					</div>
+					<div class="prolistApplyInner clearfix">
+						<h2>应用图标</h2>
+						<div style="float: left;margin-left: 18px;">
+							<input type="file" name="" id="imgUrl" value="修改头像" />
+						</div>
+					</div>
+					<div class="prolistApplytxt">
+						<div class="line"></div>
+						<h2>应用描述</h2>
+						<textarea id='introduction' name="" rows="" cols=""></textarea>
+						<p></p>
+						<input type="submit" name="prolistApplySure" id="prolistApplySure" value="提交申请" onclick="apply()">
+					</div>
+				</div>
+
+			</div>
+
+			<div id="footer">
+				<p>Copyright ©2019 火花开放平台 All Rights <a href="#" title="bootstrapmb">Reserved</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--Main End!-->
+
+
+
+	<div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr"
+		style="width: 6px; z-index: auto; cursor: default; position: absolute; top: 84.9963px; left: 1354px; height: 569px; opacity: 0.8;">
+		<div class="nicescroll-cursors"
+			style="position: relative; top: 0px; float: right; width: 4px; height: 379px; background-color: rgb(17, 174, 232); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 2px;">
+		</div>
+	</div>
+	<div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr"
+		style="height: 6px; z-index: auto; top: 647.996px; left: 0px; position: absolute; cursor: default; display: none; width: 1354px; opacity: 0.8;">
+		<div class="nicescroll-cursors"
+			style="position: absolute; top: 0px; height: 4px; width: 1360px; background-color: rgb(17, 174, 232); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 2px; left: 0px;">
+		</div>
+	</div>
+	<script>
+	Date.prototype.Format = function (fmt) { // author: meizz
+  var o = {
+    "M+": this.getMonth() + 1, // 月份
+    "d+": this.getDate(), // 日
+    "h+": this.getHours(), // 小时
+    "m+": this.getMinutes(), // 分
+    "s+": this.getSeconds(), // 秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+    "S": this.getMilliseconds() // 毫秒
+  };
+  if (/(y+)/.test(fmt))
+    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      return fmt;
+}
+		function apply(){
+			var appname = $('#appname').val() ;
+			var imgUrl = $('#imgUrl').val() ;
+			var introduction = $('#introduction').val() ;
+			var type = $('input:radio:checked').val();
+       		var ID = localStorage.getItem('id')
+		    var time2 = new Date().Format("yyyy-MM-dd hh:mm:ss")
+			var createTime = time2
+			console.log(typeof time2)
+			if(appname=='') alert('应用名称不能为空！')
+			else if(type==undefined) alert('应用类型不能为空！')
+			else if(imgUrl=='') alert('应用图标不能为空！')
+			else if(introduction=='') alert('应用描述不能为空！')
+			var list = {
+				type: Number(type),
+				appname:appname,
+				imgUrl:imgUrl,
+				introduction:introduction,
+				createTime:createTime,
+				user:'users/'+ID,
+			}
+			console.log(typeof(Number(type)),list)
+			if(appname!=''&&type!=undefined&&imgUrl!=''&&introduction!=''){
+			$.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/appApplies",
+            //数据，json字符串
+            data : JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+				alert('添加成功！')
+				window.location.href = 'index1.html';
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+		});
+		}
+	}
+		
+	</script>
+</body>
+
+</html>

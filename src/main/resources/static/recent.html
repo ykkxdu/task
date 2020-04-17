@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>应用详情</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.3.0-rc.2/echarts.simple.js"></script>
+</head>
+
+<body>
+    <!--Top Start!-->
+    <div id="top">
+        <div class="topBar">
+            <div class="inner clearfix">
+                <h4>应用详情</h4>
+                <div class="userBar topItem">
+                    <div class="portrait fl">
+                        <img src="images/portrait.jpg">
+                    </div>
+                    <h3><a href="#">sparkspace <i></i></a></h3>
+                    <div class="dropdown">
+                        <a href="#" onclick="logout()">退出</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Top End!-->
+
+    <!--Main Start!-->
+    <div id="main">
+        <div class="content">
+            <div class="contBox bgf9">
+                <div class="moneyBox">
+                    <div class="moneyTit">
+                        <ul>
+                            <li><a href="project_detail.html" target="_self">基本信息</a></li>
+                            <li class="active"><a href="recent.html" target="_self">数据动态</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="prolistApplyW">
+                        <div style="height: 400px;" class="prolistApplyInner clearfix">
+                            <h2>近7天上传统计</h2>
+                            <div style="float: left;margin-left: 18px;">
+                                <div id="chart" style="width:400px;height: 400px;"></div>
+                            </div>
+                        </div>
+                        <div class="prolistApplyInner clearfix">
+                            <h2>近10条上传数据</h2>
+                            <div style="float: left;margin-left: 18px;">
+                                <p>2019-10-18 18:34:30 spark_admin回答了问题“报错：找到错误的微控制器”</p>
+                                <p>2019-10-18 18:30:24 七弦子完成了评估“JavaScript基础”</p>
+                                <p>2019-10-18 18:29:13 asssx阅读了链接“https://www.oursparkspace.cn/?yada_wiki=1502725101-2”</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div id="footer">
+                <p>Copyright ©2019 火花开放平台 All Rights <a href="#" title="bootstrapmb">Reserved</a></p>
+            </div>
+
+        </div>
+    </div>
+    <!--Main End!-->
+</body>
+<script>
+    var dom = document.getElementById("chart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['10/16', '10/17', '10/18', '10/19', '10/20', '10/21', '10/22']
+        },
+        yAxis: {
+            type: 'value',
+            name: '次'
+        },
+        series: [{
+            data: [820, 579, 457, 432, 723, 612, 765],
+            type: 'line'
+        }]
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+</html>

@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>我的应用</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+	<!--Top Start!-->
+	<div id="top">
+		<div class="topBar">
+			<div class="inner clearfix">
+				<h4>我的应用</h4>
+				<div class="userBar topItem">
+					<div class="portrait fl">
+						<img src="images/portrait.jpg">
+					</div>
+					<h3><a id='usrname' href="#"><i></i></a></h3>
+					<div class="dropdown">
+						<a href="#" onclick="logout()">退出</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Top End!-->
+
+	<!--Main Start!-->
+	<div id="main">
+		<div class="content">
+			<div class="contBox bgf9">
+				<div class="prolistHead clearfix">
+					<a class="prolist1 active" href="my_project.html" target="_self">我的应用</a>
+					<a class="prolist2" href="project_apply.html">创建应用</a>
+				</div>
+				<div class="prolistSearch clearfix">
+					<div class="prolistSearchW">
+						<div class="selectW">
+							<input type="text" name="" id="" value="" readonly="readonly" placeholder="应用名称"
+								unselectable="on" onfocus="this.blur()" />
+							<span class="selBtn"></span>
+							<div class="selectDown">
+								<ul>
+									<li>应用名称</li>
+									<li>应用类型</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+					<div class="prolistSearchW">
+						<input type="text" name="" id="" value="" placeholder="搜索" />
+						<input type="submit" class="searchBtn" name="" id="" value="" />
+					</div>
+				</div>
+				<div class="prolist">
+					<table border="1" cellspacing="0" cellpadding="0" border-collapse="collapse" width="100%">
+						<thead>
+						<tr>
+							<th><i>APP ID</i></th>
+							<th><i>应用名称</i></th>
+							<th width="32%">APP Key</th>
+							<th width="12.222%">应用类型</th>
+							<!-- <th width="18.333%">审核状态</th> -->
+							<th>应用管理</th>
+						</tr>
+					</thead>
+					<tbody  id="test"> 
+						<tr>
+							<td>000001</td>
+							<td><a href="project_detail.html">火花空间</a></td>
+							<td>
+								<p>8luwapkv8jtcl</p>
+							</td>
+							<td>Web应用</td>
+							
+							<td><span class="active"><a style="color: white;" href="project_detail.html">查看应用</a></span></td>
+						</tr>
+						</tbody>
+						<!-- <tr>
+							<td>000002</td>
+							<td>测试应用</td>
+							<td>
+								<p></p>
+							</td>
+							<td>小程序</td>
+							<td>待审核</td>
+							<td><span>查看应用</span></td>
+						</tr> -->
+					</table>
+
+					<div class="page">
+						<em>首页</em>
+						<i>上一页</i>
+						<a class="active" href="javascript:">1</a>
+						<!-- <a href="javascript:">2</a>
+						<a href="javascript:">3</a>
+						<a href="javascript:">4</a>
+						<a href="javascript:">5</a>
+						<a href="javascript:">6</a> -->
+						<i>下一页</i>
+						<em>尾页</em>
+						<p>第<span>1</span>页/共<span>1</span>页</p>
+
+						<input type="text" name="" id="" value="" />
+						<input class="searchBtn" type="submit" name="" id="" value="跳转" />
+					</div>
+
+				</div>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+
+			<div id="footer">
+				<p>Copyright ©2019 火花开放平台 All Rights <a href="#" title="bootstrapmb">Reserved</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--Main End!-->
+</body>
+<script>
+ 	function store(obj){
+		console.log($(obj))
+		var appid = $(obj)[0].attributes[0].nodeValue
+		var apptype = Number($(obj)[0].attributes[1].nodeValue)
+		var appname = $(obj)[0].attributes[2].nodeValue
+		var appintro = $(obj)[0].attributes[3].nodeValue
+		var appurl = $(obj)[0].attributes[4].nodeValue
+		localStorage.setItem('appid',appid)
+		localStorage.setItem('apptype',apptype)
+		localStorage.setItem('appname',appname)
+		localStorage.setItem('appintro',appintro)
+		localStorage.setItem('appurl',appurl)
+	}
+</script>
+<script>
+	console.log( localStorage.getItem('name'))
+	$('#usrname').html(localStorage.getItem('name'))
+	$(document).ready(function(){
+	var userId = localStorage.getItem('id')
+
+	$.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/apps/search/findByUserId?userId="+userId,
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(data) {
+				data = data._embedded.apps
+				console.log('my project')
+				console.log(data)
+				var html = '';
+				for ( var i = 0; i < data.length; i++) {//循环json对象，拼接tr,td的html
+					html = html + '<tr>';
+					html = html + '<td id="appid">' + data[i].appid + '</td>';
+					html = html + '<td>' + data[i].appname + '</td>';
+					html = html + '<td>' + data[i].appkey + '</td>';
+					var apptype;
+					switch(data[i].type){
+						case 0:
+						apptype='移动APP';
+						break;
+						case 1:
+						apptype='小程序';
+						break;
+						case 2:
+						apptype='Web应用';
+						break;
+						case 3:
+						apptype='研究报告';
+						break;
+						default:
+						apptype='PC软件';
+					}
+					html = html + '<td>' + apptype + '</td>';
+					//html = html + '<td><span class="active"><a target="'+window.name+'" style="color: white;" href="project_detail.html?id='+data[i].appid+'&name='+data[i].appname+'&intro='+data[i].introduction+'&type='+data[i].type+'&url='+data[i].imgUrl+'">查看应用</a></span></td>';
+					html = html + '<td data-id="'+data[i].appid+'"data-type="'+data[i].type+'" data-name="'+data[i].appname+'" data-intro="'+data[i].introduction+'" data-url="'+data[i].imgUrl+'"  onclick="store(this)"><span class="active"><a target="right" style="color: white;" href="project_detail.html" target="'+window.name+'">查看应用</a></span></td>';
+					html = html + '</tr>';
+				}
+				$('#test').html(html);//通过jquery方式获取table，并把tr,td的html输出到table中
+				},
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+		});
+		
+		
+});
+</script>
+
+</html>

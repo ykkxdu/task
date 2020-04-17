@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>应用详情</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+	<!--Top Start!-->
+	<div id="top">
+		<div class="topBar">
+			<div class="inner clearfix">
+				<h4>应用详情</h4>
+				<div class="userBar topItem">
+					<div class="portrait fl">
+						<img src="images/portrait.jpg">
+					</div>
+					<h3><a href="#">sparkspace<i></i></a></h3>
+					<div class="dropdown">
+						<a href="#" onclick="logout()">退出</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Top End!-->
+
+	<!--Main Start!-->
+	<div id="main">
+		<div class="content">
+			<div class="contBox bgf9">
+				<div class="moneyBox">
+					<div class="moneyTit">
+						<ul>
+							<li class="active"><a href="project_detail.html" target="_self">基本信息</a></li>
+							<li><a href="recent.html" target="_self">数据动态</a>
+							</li>
+						</ul>
+					</div>
+					<div class="prolistApplyW">
+						<div class="prolistApplyInner clearfix">
+							<h2>应用名称</h2>
+							<div style="float: left;margin-left: 18px;">
+								<p id='appname'>火花空间</p>
+							</div>
+						</div>
+						<div class="prolistApplyInner clearfix">
+							<h2>APP ID</h2>
+							<div style="float: left;margin-left: 18px;">
+								<p id='appid'>000001</p>
+							</div>
+						</div>
+						<!-- <div class="prolistApplyInner clearfix">
+							<h2>APP Key</h2>
+							<div style="float: left;margin-left: 18px;">
+								<p style="display: inline-block;margin-right:30px;">8luwapkv8jtcl</p> <button style="border: 1px solid violet;padding:5px;border-radius: 20px;"><a>点击刷新</a></button>
+							</div>
+						</div> -->
+						<div class="prolistApplyInner clearfix">
+							<h2>应用类型</h2>
+							<div style="float: left;margin-left: 18px;">
+								<p id='apptype'>Web应用</p>
+							</div>
+						</div>
+						<div class="prolistApplyInner clearfix">
+							<h2>应用图标</h2>
+							<div class="personPic" style="float: left;margin-left: 18px;height: auto;">
+								<img id='appurl' src="images/spark_logo.png" />
+							</div>
+						</div>
+						<div class="prolistApplytxt">
+							<div class="line"></div>
+							<h2>应用描述</h2>
+							<div style="color: #000000;">
+								<p id='appintro'>面向北邮信通院大一新生的项目式自学平台</p>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+			<div id="footer">
+				<p>Copyright ©2019 火花开放平台 All Rights <a href="#" title="bootstrapmb">Reserved</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--Main End!-->
+</body>
+<script>
+	console.log('detail')
+	console.log(window.frames)
+	
+	var id = localStorage.getItem('appid')
+	var appname = localStorage.getItem('appname')
+	var intro = localStorage.getItem('appintro')
+	var type = localStorage.getItem('apptype')
+	var url = localStorage.getItem('appurl')
+	var apptype;
+	switch(Number(type)){
+		case 0:
+			apptype='移动APP';
+			break;
+		case 1:
+			apptype='小程序';
+			break;
+		case 2:
+			apptype='Web应用';
+			break;
+		case 3:
+			apptype='研究报告';
+			break;
+		default:
+			apptype='PC软件';
+					}	
+	console.log(id,appname,intro,type,url)
+	$('#appname').html(appname)
+	$('#appid').html(id)
+	$('#appurl').attr('src',url)
+	$('#appintro').html(intro)
+	$('#apptype').html(apptype)
+	console.log(location)
+</script>
+
+</html>

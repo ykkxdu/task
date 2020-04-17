@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>应用审核</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+</head>
+
+<body>
+	<!--Top Start!-->
+	<div id="top">
+		<div class="topBar">
+			<div class="inner clearfix">
+				<h4>应用审核</h4>
+				<div class="userBar topItem">
+					<div class="portrait fl">
+						<img src="images/admin_icon.png">
+					</div>
+					<h3><a id='usrname' href="#">admin<i></i></a></h3>
+					<div class="dropdown">
+						<a href="#" onclick="logout()">退出</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Top End!-->
+
+	<!--Main Start!-->
+	<div id="main">
+		<div class="content">
+			<div class="contBox bgf9">
+				<div class="buttOper blacklist clearfix">
+					<div class="buttProject selectW">
+						<input type="text" name="" id="" value="" placeholder="应用名称" readonly="readonly"
+							unselectable="on" onfocus="this.blur()" />
+						<span class="selBtn"></span>
+						<div class="selectDown">
+							<ul>
+								<li>应用名称</li>
+								<li>应用类型</li>
+							</ul>
+						</div>
+					</div>
+					<div class="buttSearch">
+						<input type="text" name="" id="" value="" placeholder="搜索" />
+						<input class="searchBtn" type="submit" name="" id="" value="" />
+					</div>
+				</div>
+
+				<div class="buttOper blacklist clearfix">
+					<div class="buttChoose blacklistChoose clearfix">
+						<a href="javascript:" onclick="clear()">批量通过</a>
+						<a href="javascript:">批量拒绝</a>
+					</div>
+				</div>
+
+
+				<div class="prolist buttW">
+					<table border="1" cellspacing="0" cellpadding="0" border-collapse="collapse" width="100%">
+						<thead>
+						<tr>
+							<th></th>
+							<th><em>ID</em></th>
+							<th>应用名称</th>
+							<th>申请人</th>
+							<th>应用类型</th>
+							<th>申请时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody  id="test"> 
+						<!-- <tr>
+							<td><i class="active"></i></td>
+							<td>1</td>
+							<td>火花空间</td>
+							<td>spark_admin</td>
+							<td>Web应用</td>
+							<td width="300px">2019/08/20 10:20:52</td>
+							<td>
+								<span onclick="detail()"
+									style="width: 80px;font-size: 12px; color: blueviolet;">查看详情</span>
+								<span onclick="pass()" style="width: 80px;font-size: 12px;color: green;">通过</span>
+								<span onclick="deny()" style="width: 80px;font-size: 12px;color: red;">拒绝</span>
+							</td>
+						</tr> -->
+					</tbody>
+					</table>
+
+					<div class="page">
+						<em>首页</em>
+						<i>上一页</i>
+						<a class="active" href="javascript:">1</a>
+						<!-- <a href="javascript:">2</a>
+						<a href="javascript:">3</a>
+						<a href="javascript:">4</a>
+						<a href="javascript:">5</a>
+						<a href="javascript:">6</a> -->
+						<i>下一页</i>
+						<em>尾页</em>
+						<p>第<span>1</span>页/共<span>1</span>页</p>
+
+						<input type="text" name="" id="" value="" />
+						<input class="searchBtn" type="submit" name="" id="" value="跳转" />
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+
+			<div id="footer">
+				<p>Copyright ©2019 火花数据共享平台 All Rights <a href="#" title="bootstrapmb">Reserved</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--Main End!-->
+	<div id="details" style="display:none">
+		<div class="prolistApplyW">
+			<div class="prolistApplyInner clearfix">
+				<h2>应用名称</h2>
+				<div style="float: left;margin-left: 18px;">
+					<p id='innerAppName'>火花空间</p>
+				</div>
+			</div>
+			<div class="prolistApplyInner clearfix">
+				<h2>应用类型</h2>
+				<div style="float: left;margin-left: 18px;">
+					<p id='innerAppType'>Web应用</p>
+				</div>
+			</div>
+			<div class="prolistApplyInner clearfix">
+				<h2>应用图标</h2>
+				<div class="personPic" style="float: left;margin-left: 18px;height: auto;">
+					<img id='innerAppImgUrl' src="images/spark_logo.png" />
+				</div>
+			</div>
+			<div class="prolistApplytxt">
+				<div class="line"></div>
+				<h2>应用描述</h2>
+				<div style="color: #000000;">
+					<p id='innerAppIntro'>面向北邮信通院大一新生的项目式自学平台</p>
+				</div>
+			</div>
+			<div style="padding: 0 20px 0 70px;">
+				<input  data-id = ''  type="submit"name="prolistApplySure" id="prolistApplySure" class='prolistApplySure' onclick="detailpass(this)" value="通过">
+				<input data-id = '' class='prolistApplySure' style="background-color: white;color: red;border: 1px solid red;margin-left: 30px;" type="submit" name="prolistApplySure" id="prolistApplySure" onclick="detaildeny(this)" value="拒绝">
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$('#usrname').html(localStorage.getItem('name'))
+	$(document).ready(function(){
+	$.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/appApply/getAllExaminingApp",
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(data) {
+				console.log(data)
+				if(localStorage.getItem("role")=='ADMIN'){
+					var html = '';
+				for ( var i = 0; i < data.length; i++) {//循环json对象，拼接tr,td的html
+					html = html + '<tr>';
+					html = html + '<td><input type="checkbox"/></td>'
+					html = html + '<td id="appid">' + data[i].id + '</td>';
+					html = html + '<td>' + data[i].appname + '</td>';
+					var u = data[i].user
+					if(u!=null){
+						html = html + '<td>' + u.userName + '</td>';
+					}else{
+						html = html + '<td>' + u + '</td>';
+					}
+				
+					var apptype;
+					switch(data[i].type){
+						case 0:
+						apptype='移动APP';
+						break;
+						case 1:
+						apptype='小程序';
+						break;
+						case 2:
+						apptype='Web应用';
+						break;
+						case 3:
+						apptype='研究报告';
+						break;
+						default:
+						apptype='PC软件';
+					}
+					html = html + '<td>' + apptype + '</td>';
+					html = html + '<td width="300px">' + data[i].applyTime + '</td>';
+					html = html + '<td data-id="'+data[i].id+'"data-type="'+data[i].type+'" data-name="'+data[i].appname+'" data-intro="'+data[i].introduction+'" data-imgUrl="'+data[i].imgUrl+'"><span onclick="detail(this)" style="width: 80px;font-size: 12px; color: blueviolet;">查看详情</span><span onclick="pass(this)" style="width: 80px;font-size: 12px;color: green;">通过</span><span onclick="deny(this)" style="width: 80px;font-size: 12px;color: red;">拒绝</span></td>'
+					html = html + '</tr>';
+				}
+				$('#test').html(html);//通过jquery方式获取table，并把tr,td的html输出到table中
+				}
+				},
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+});
+	function clear() {
+		$('#test').hide();
+	};
+	function pass(obj) {
+		event.preventDefault()
+		$('#test').hide();
+      var appid = $(obj).parents("tr").find("#appid").text();
+	  console.log(appid)
+	  $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/appApply/updateAppState?id="+appid+"&&isRefuse=1",
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+				alert("已通过")
+				location.reload();
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+	};
+
+	function deny(obj) {
+		event.preventDefault()
+		$('#test').hide();
+      var appid = $(obj).parents("tr").find("#appid").text();
+	  console.log(appid)
+	  $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/appApply/updateAppState?id="+appid+"&&isRefuse=0",
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+				alert(result)
+				location.reload();
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+	};
+
+	function detail(obj) {
+		var id = $(obj).parents("td")[0].attributes[0].nodeValue
+		var type = $(obj).parents("td")[0].attributes[1].nodeValue
+		var name = $(obj).parents("td")[0].attributes[2].nodeValue
+		var intro = $(obj).parents("td")[0].attributes[3].nodeValue
+		var imgurl = $(obj).parents("td")[0].attributes[4].nodeValue
+	
+		var apptype;
+		switch(Number(type)){
+			case 0:
+				apptype='移动APP';
+			 	break;
+			case 1:
+				apptype='小程序';
+				break;
+			case 2:
+				apptype='Web应用';
+				break;
+			case 3:
+				apptype='研究报告';
+				break;
+			default:
+				apptype='PC软件';
+					}
+		$('#innerAppName').html(name)
+		$('#innerAppType').html(apptype)
+		$('#innerAppImgUrl').attr('src',imgurl)
+		$('#innerAppIntro').html(intro)
+		$('.prolistApplySure').attr('data-id',id)
+		var index = layer.open({
+			type: 1,
+			title: name,
+			area: ['800px', '560px'],
+			shadeClose: true, //点击遮罩关闭
+			content: $('#details'),
+			btn: ['关闭'],
+			yes: function () {
+				layer.close(index)
+			}
+		});
+	}
+	function detailpass(obj){
+	  var appid = $(obj)[0].attributes[0].nodeValue
+	  console.log(appid)
+	  $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/appApply/updateAppState?id="+appid+"&&isRefuse=1",
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+				alert("已通过")
+				location.reload();
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+				location.reload();
+            }
+        });
+	}
+
+	function detaildeny(obj){
+		var appid = $(obj)[0].attributes[0].nodeValue
+	    console.log(appid)
+		$.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:6001/api/appApply/updateAppState?id="+appid+"&&isRefuse=0",
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+				console.log(result);
+				alert(result)
+				location.reload();
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+				location.reload();
+            }
+        });
+	}
+
+	// function detail(obj) {
+		
+	// 	var index = layer.open({
+	// 		type: 1,
+	// 		title: '火花空间',
+	// 		area: ['800px', '560px'],
+	// 		shadeClose: true, //点击遮罩关闭
+	// 		content: $('#details'),
+	// 		btn: ['关闭'],
+	// 		yes: function () {
+	// 			layer.close(index)
+	// 		}
+	// 	});
+	// }
+</script>
+
+</html>
