@@ -38,10 +38,27 @@
 .btn{
     position: absolute;
     top: 18.5rem;
+    right: 18rem;
+    border: none;
+    color: #fff;
+    /* width: 373px; */
+    width: 140px;
+    text-align: center;
+    background-color: #1592ef;
+    text-indent: 0rem;
+    border-radius: 10px;
+    text-shadow:2px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow:2px 2px 1px rgba(0, 0, 0, 0.2);
+    font-size:20px ;
+    height: 50px;
+}
+.btn1{
+    position: absolute;
+    top: 18.5rem;
     right: 3.9rem;
     border: none;
     color: #fff;
-    width: 373px;
+    width: 140px;
     text-align: center;
     background-color: #1592ef;
     text-indent: 0rem;
