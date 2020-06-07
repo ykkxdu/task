@@ -58,10 +58,11 @@
 						</div>
 						
 						<div class="personW">
-							<p><span class="personWLeft personWLeft1">用户名：</span><span class="personWCenter">admin</span></p>
-							<p><span class="personWLeft">E-mail：</span><span class="personWCenter"><input type="text" name="" id="" value="" placeholder="1515994506@qq.com"/></span></p>
-							<p><span class="personWLeft">手机号：</span><span class="personWCenter"><input type="text" name="" id="" value="" placeholder="13802547864"/></span></p>
-							<p><span class="personWLeft">QQ：</span><span class="personWCenter"><input type="text" name="" id="" value="" placeholder="25478679"/></span></p>
+							<p><span class="personWLeft personWLeft1">用户名：</span><span id='username' class="personWCenter">admin</span></p>
+							<p><span class="personWLeft">E-mail：</span><span class="personWCenter"><input type="text" name="" id="email" value="" /></span></p>
+							<!-- 1515994506@qq.com 25478679 -->
+							<p><span class="personWLeft">手机号：</span><span class="personWCenter"><input type="text" name="" id="phone" value="" /></span></p>
+							<p><span class="personWLeft">QQ：</span><span class="personWCenter"><input type="text" name="" id="qq" value="" /></span></p>
 						</div>
 						<input class="personSure" type="submit" name="" id="" value="保存" />
 						
@@ -77,4 +78,33 @@
 		<!--Main End!-->
 		
 	</body>
+	<script>
+		    var userId = localStorage.getItem('id')
+			$.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://134.175.80.62:6001/api/users/"+userId,
+            //数据，json字符串
+            // data : JSON.stringify(list),
+            //请求成功
+            success : function(data) {
+				console.log(data)
+				var username = data.userName
+				var phone = data.phone
+				$('#username').html(username)
+				$('#phone').val(phone)
+				$('#qq').val('')
+				$('#email').val('')
+				},
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+		});
+		
+	</script>
 </html>
